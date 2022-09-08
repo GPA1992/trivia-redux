@@ -1,10 +1,14 @@
 import {
   LOGIN_USER,
+  EMAIL_USER,
 } from './types';
 
-const loginAction = (userData) => ({
+export const loginAction = (userData) => ({
   type: LOGIN_USER,
   payload: userData,
 });
 
-export default loginAction;
+export const getEmail = (emailData) => ({
+  type: EMAIL_USER,
+  payload: emailData,
+});
