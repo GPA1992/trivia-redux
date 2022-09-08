@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './Login.css';
+import tokenAPI from '../services/tokenAPI';
+import loginAction from '../Redux/action';
 
 class Login extends React.Component {
   state = {
@@ -28,12 +31,22 @@ class Login extends React.Component {
     }, this.checkAllForm);
   };
 
-  handleClick = ({ target }) => {
-    /* this.setState({ loggedind: true }); */
+  saveLocalStorageHandler = (infoToSave, keyName) => localStorage
+    .setItem(infoToSave, keyName);
+
+  handleClick = async ({ target }) => {
     const { value } = target;
     if (value === 'settings') {
       const { history } = this.props;
       history.push('/settings');
+    } else {
+      const { name } = this.state;
+      const { setUser, history } = this.props;
+      const response = await tokenAPI();
+      const { token } = response;
+      this.saveLocalStorageHandler('token', token);
+      setUser(name);
+      history.push('/game');
     }
   };
 
@@ -96,6 +109,11 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (state) => dispatch(loginAction(state)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
