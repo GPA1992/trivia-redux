@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './Login.css';
 
 class Login extends React.Component {
@@ -26,8 +28,13 @@ class Login extends React.Component {
     }, this.checkAllForm);
   };
 
-  handleClick = () => {
+  handleClick = ({ target }) => {
     /* this.setState({ loggedind: true }); */
+    const { value } = target;
+    if (value === 'settings') {
+      const { history } = this.props;
+      history.push('/settings');
+    }
   };
 
   render() {
@@ -65,10 +72,18 @@ class Login extends React.Component {
               disabled={ disableEnter }
               onClick={ this.handleClick }
               data-testid="btn-play"
+              value="play"
               type="button"
             >
               Play
-
+            </button>
+            <button
+              type="button"
+              data-testid="btn-settings"
+              value="settings"
+              onClick={ this.handleClick }
+            >
+              Configurações
             </button>
           </form>
         </div>
@@ -76,5 +91,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
