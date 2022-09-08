@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
-import Header from './Header';
+import Header from '../components/Header';
 
 class Game extends Component {
   state = {
