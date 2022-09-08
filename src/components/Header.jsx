@@ -13,9 +13,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     const { email } = this.props;
-    console.log('email:', email);
     const getHash = md5(email).toString();
-    console.log('hash:', getHash);
     this.setState({ hash: getHash });
   }
 
@@ -33,13 +31,11 @@ class Header extends React.Component {
           data-testid="header-player-name"
         >
           {name}
-
         </p>
         <p
           data-testid="header-score"
         >
           {score}
-
         </p>
       </header>
     );
