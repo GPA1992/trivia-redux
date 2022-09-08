@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './Login.css';
 import PropTypes from 'prop-types';
+
+import './Login.css';
 import tokenAPI from '../services/tokenAPI';
 import loginAction from '../Redux/action';
 
@@ -33,14 +34,20 @@ class Login extends React.Component {
   saveLocalStorageHandler = (infoToSave, keyName) => localStorage
     .setItem(infoToSave, keyName);
 
-  handleClick = async () => {
-    const { name } = this.state;
-    const { setUser, history } = this.props;
-    const response = await tokenAPI();
-    const { token } = response;
-    this.saveLocalStorageHandler('token', token);
-    setUser(name);
-    history.push('/game');
+  handleClick = async ({ target }) => {
+    const { value } = target;
+    if (value === 'settings') {
+      const { history } = this.props;
+      history.push('/settings');
+    } else {
+      const { name } = this.state;
+      const { setUser, history } = this.props;
+      const response = await tokenAPI();
+      const { token } = response;
+      this.saveLocalStorageHandler('token', token);
+      setUser(name);
+      history.push('/game');
+    }
   };
 
   render() {
@@ -78,9 +85,18 @@ class Login extends React.Component {
               disabled={ disableEnter }
               onClick={ this.handleClick }
               data-testid="btn-play"
+              value="play"
               type="button"
             >
               Play
+            </button>
+            <button
+              type="button"
+              data-testid="btn-settings"
+              value="settings"
+              onClick={ this.handleClick }
+            >
+              Configurações
             </button>
           </form>
         </div>
