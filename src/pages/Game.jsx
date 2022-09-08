@@ -21,24 +21,36 @@ class Game extends Component {
     this.setState({ questions, loading: false });
   }
 
-  createArrayOfAnswers = () => {
+  shuffleArray = (array) => {
+    const SHUFFLE_NUMBER = 0.5;
+    return array.sort(() => Math.random() - SHUFFLE_NUMBER);
+  };
+
+  getIncorrectAnswers = () => {
     const { questions, questionIndex } = this.state;
-    const {
-      incorrect_answers: incorrect,
-      correct_answer: correct,
-    } = questions[questionIndex];
+    const { incorrect_answers: incorrectAnswers } = questions[questionIndex];
 
-    const correctAnswer = (
-      <button type="button" data-testid={ correct }>{correct}</button>
-    );
-
-    const incorrectAnswers = incorrect.map((answer, index) => (
+    return incorrectAnswers.map((answer, index) => (
       <button key={ index } type="button" data-testid={ `wrong-answer-${index}` }>
         {answer}
       </button>
     ));
+  };
 
-    return [...incorrectAnswers, correctAnswer];
+  getCorrectAnswer = () => {
+    const { questions, questionIndex } = this.state;
+    const { correct_answer: correctAnswer } = questions[questionIndex];
+
+    return (
+      <button key={ 4 } type="button" data-testid="correct-answer">
+        {correctAnswer}
+      </button>
+    );
+  };
+
+  createArrayOfAnswers = () => {
+    const arrayOfAnswers = [...this.getIncorrectAnswers(), this.getCorrectAnswer()];
+    return this.shuffleArray(arrayOfAnswers);
   };
 
   render() {
@@ -47,9 +59,11 @@ class Game extends Component {
       !loading
       && (
         <div>
-          <p data-testid="question-category">
-            {questions[questionIndex].category}
-          </p>
+          <div>
+            <p data-testid="question-category">
+              {questions[questionIndex].category}
+            </p>
+          </div>
 
           <p data-testid="question-text">
             {questions[questionIndex].question}
