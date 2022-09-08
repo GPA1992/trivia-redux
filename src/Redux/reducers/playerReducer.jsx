@@ -1,9 +1,9 @@
-import { LOGIN_USER } from '../action/types';
+import { EMAIL_USER, LOGIN_USER } from '../action/types';
 
 const INITIAL_STATE = {
   name: '',
   assertions: '',
-  score: '',
+  score: 0,
   gravatarEmail: '',
 };
 
@@ -13,6 +13,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       name: action.payload,
+    };
+  case EMAIL_USER:
+    return {
+      ...state,
+      gravatarEmail: action.payload,
     };
   default:
     return state;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
+import Header from './Header';
 
 class Game extends Component {
   state = {
@@ -59,6 +60,7 @@ class Game extends Component {
       !loading
       && (
         <div>
+          <Header />
           <div>
             <p data-testid="question-category">
               {questions[questionIndex].category}
