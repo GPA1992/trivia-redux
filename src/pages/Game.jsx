@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
 
-export default class Game extends Component {
+class Game extends Component {
   state = {
     questions: {},
     questionIndex: 0,
@@ -9,7 +10,14 @@ export default class Game extends Component {
   };
 
   async componentDidMount() {
-    const questions = await triviaAPI();
+    const { history } = this.props;
+    const token = localStorage.getItem('token');
+    const questions = await triviaAPI(token);
+
+    if (questions.length === 0) {
+      localStorage.removeItem('token');
+      history.push('/');
+    }
     this.setState({ questions, loading: false });
   }
 
@@ -48,12 +56,18 @@ export default class Game extends Component {
           </p>
 
           <div data-testid="answer-options">
-            {
-              this.createArrayOfAnswers()
-            }
+            {this.createArrayOfAnswers()}
           </div>
         </div>
       )
     );
   }
 }
+
+Game.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default Game;
