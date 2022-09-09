@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
+import { userPerformance } from '../Redux/action';
 import Header from '../components/Header';
 import '../css/Game.style.css';
 
@@ -13,6 +15,7 @@ const INITIAL_STATE = {
     isDisabled: false,
   },
   timer: 30000,
+  score: 0,
 };
 class Game extends Component {
   state = INITIAL_STATE;
@@ -32,6 +35,35 @@ class Game extends Component {
   shuffleArray = (array) => {
     const SHUFFLE_NUMBER = 0.5;
     return array.sort(() => Math.random() - SHUFFLE_NUMBER);
+  };
+
+  setDifficulty = () => {
+    const { questions, questionIndex } = this.state;
+    const difficultyList = {
+      easy: 1,
+      medium: 2,
+      hard: 3,
+    };
+    return difficultyList[questions[questionIndex].difficulty];
+  };
+
+  clickAnswerHandler = ({ target }) => {
+    const { score } = this.state;
+    const { setUserPerformance } = this.props;
+    const base = 10;
+    this.setState(() => ({
+      answerBtns: {
+        myAnswer: true,
+        isDisabled: true,
+      },
+    }));
+    if (target.name === 'correctAnswer') {
+      const timer = document.getElementById('timer').innerHTML;
+      const upScore = base + (timer * this.setDifficulty());
+      this.setState({
+        score: score + upScore,
+      }, () => setUserPerformance(this.state));
+    }
   };
 
   getIncorrectAnswers = () => {
@@ -64,6 +96,7 @@ class Game extends Component {
         key={ 4 }
         type="button"
         data-testid="correct-answer"
+        name="correctAnswer"
         className={ (myAnswer) ? 'correct__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || !timer }
@@ -77,15 +110,6 @@ class Game extends Component {
   createArrayOfAnswers = () => {
     const arrayOfAnswers = [...this.getIncorrectAnswers(), this.getCorrectAnswer()];
     return this.shuffleArray(arrayOfAnswers);
-  };
-
-  clickAnswerHandler = () => {
-    this.setState(() => ({
-      answerBtns: {
-        myAnswer: true,
-        isDisabled: true,
-      },
-    }));
   };
 
   timerCountdownHandler = () => {
@@ -110,7 +134,7 @@ class Game extends Component {
           <div>
             <Header />
             <div>
-              <h3>{ timer }</h3>
+              <h3 id="timer">{ timer }</h3>
               <p data-testid="question-category">
                 {questions[questionIndex].category}
               </p>
@@ -134,6 +158,11 @@ Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  setUserPerformance: PropTypes.func.isRequired,
 };
 
-export default Game;
+const mapDispatchToProps = (dispatch) => ({
+  setUserPerformance: (performanceData) => dispatch(userPerformance(performanceData)),
+});
+
+export default connect(null, mapDispatchToProps)(Game);
