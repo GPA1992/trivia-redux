@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
 import Header from '../components/Header';
+import '../css/Game.style.css';
 
+const INITIAL_STATE = {
+  questions: {},
+  questionIndex: 0,
+  loading: true,
+  myAnswer: false,
+};
 class Game extends Component {
-  state = {
-    questions: {},
-    questionIndex: 0,
-    loading: true,
-  };
+  state = INITIAL_STATE;
 
   async componentDidMount() {
     const { history } = this.props;
     const token = localStorage.getItem('token');
     const questions = await triviaAPI(token);
 
-    if (questions.length === 0) {
+    if (!questions.length) {
       localStorage.removeItem('token');
       history.push('/');
     }
@@ -28,22 +31,34 @@ class Game extends Component {
   };
 
   getIncorrectAnswers = () => {
-    const { questions, questionIndex } = this.state;
+    const { questions, questionIndex, myAnswer } = this.state;
     const { incorrect_answers: incorrectAnswers } = questions[questionIndex];
 
     return incorrectAnswers.map((answer, index) => (
-      <button key={ index } type="button" data-testid={ `wrong-answer-${index}` }>
+      <button
+        key={ index }
+        type="button"
+        data-testid={ `wrong-answer-${index}` }
+        className={ (myAnswer) ? 'wrong__answer' : '' }
+        onClick={ this.clickAnswerHandler }
+      >
         {answer}
       </button>
     ));
   };
 
   getCorrectAnswer = () => {
-    const { questions, questionIndex } = this.state;
+    const { questions, questionIndex, myAnswer } = this.state;
     const { correct_answer: correctAnswer } = questions[questionIndex];
-
     return (
-      <button key={ 4 } type="button" data-testid="correct-answer">
+      <button
+        key={ 4 }
+        type="button"
+        data-testid="correct-answer"
+        className={ (myAnswer) ? 'correct__answer' : '' }
+        onClick={ this.clickAnswerHandler }
+        // id="correct"
+      >
         {correctAnswer}
       </button>
     );
@@ -52,6 +67,13 @@ class Game extends Component {
   createArrayOfAnswers = () => {
     const arrayOfAnswers = [...this.getIncorrectAnswers(), this.getCorrectAnswer()];
     return this.shuffleArray(arrayOfAnswers);
+  };
+
+  clickAnswerHandler = () => {
+    this.setState(() => ({
+      myAnswer: true,
+    }));
+    // quando mudar de questão precisa resetar o estado
   };
 
   render() {

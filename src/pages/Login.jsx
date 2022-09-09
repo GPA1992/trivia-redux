@@ -1,12 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import '../css/Login.css';
 import tokenAPI from '../services/tokenAPI';
 import { loginAction, getEmail } from '../Redux/action';
 
-class Login extends React.Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -34,26 +33,25 @@ class Login extends React.Component {
   saveLocalStorageHandler = (infoToSave, keyName) => localStorage
     .setItem(infoToSave, keyName);
 
-  handleClick = async ({ target }) => {
-    const { value } = target;
-    if (value === 'settings') {
-      const { history } = this.props;
-      history.push('/settings');
-    } else {
-      const { name, email } = this.state;
-      const { setUser, setEmail, history } = this.props;
-      const response = await tokenAPI();
-      const { token } = response;
-      this.saveLocalStorageHandler('token', token);
-      setUser(name);
-      setEmail(email);
-      console.log('toke:', token);
-      history.push('/game');
-    }
+  handleClickSettings = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
+  handleClickGame = async () => {
+    const { name, email } = this.state;
+    const { setUser, setEmail, history } = this.props;
+    const response = await tokenAPI();
+    const { token } = response;
+    this.saveLocalStorageHandler('token', token);
+    setUser(name);
+    setEmail(email);
+    history.push('/game');
   };
 
   render() {
     const { disableEnter } = this.state;
+
     return (
       <div className="login">
         <div className="form">
@@ -85,7 +83,7 @@ class Login extends React.Component {
             <br />
             <button
               disabled={ disableEnter }
-              onClick={ this.handleClick }
+              onClick={ this.handleClickGame }
               data-testid="btn-play"
               value="play"
               type="button"
@@ -96,7 +94,7 @@ class Login extends React.Component {
               type="button"
               data-testid="btn-settings"
               value="settings"
-              onClick={ this.handleClick }
+              onClick={ this.handleClickSettings }
             >
               Configurações
             </button>

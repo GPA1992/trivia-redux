@@ -1,0 +1,7 @@
+.correct__answer {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.wrong__answer {
+  border: 3px solid red;
+}
