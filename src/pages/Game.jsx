@@ -8,7 +8,11 @@ const INITIAL_STATE = {
   questions: {},
   questionIndex: 0,
   loading: true,
-  myAnswer: false,
+  answerBtns: {
+    myAnswer: false,
+    isDisabled: false,
+  },
+  timer: 30000,
 };
 class Game extends Component {
   state = INITIAL_STATE;
@@ -31,7 +35,9 @@ class Game extends Component {
   };
 
   getIncorrectAnswers = () => {
-    const { questions, questionIndex, myAnswer } = this.state;
+    const {
+      questions,
+      questionIndex, answerBtns: { myAnswer, isDisabled }, timer } = this.state;
     const { incorrect_answers: incorrectAnswers } = questions[questionIndex];
 
     return incorrectAnswers.map((answer, index) => (
@@ -41,6 +47,7 @@ class Game extends Component {
         data-testid={ `wrong-answer-${index}` }
         className={ (myAnswer) ? 'wrong__answer' : '' }
         onClick={ this.clickAnswerHandler }
+        disabled={ isDisabled || !timer }
       >
         {answer}
       </button>
@@ -48,7 +55,9 @@ class Game extends Component {
   };
 
   getCorrectAnswer = () => {
-    const { questions, questionIndex, myAnswer } = this.state;
+    const {
+      questions,
+      questionIndex, answerBtns: { myAnswer, isDisabled }, timer } = this.state;
     const { correct_answer: correctAnswer } = questions[questionIndex];
     return (
       <button
@@ -57,6 +66,7 @@ class Game extends Component {
         data-testid="correct-answer"
         className={ (myAnswer) ? 'correct__answer' : '' }
         onClick={ this.clickAnswerHandler }
+        disabled={ isDisabled || !timer }
         // id="correct"
       >
         {correctAnswer}
@@ -71,33 +81,51 @@ class Game extends Component {
 
   clickAnswerHandler = () => {
     this.setState(() => ({
-      myAnswer: true,
+      answerBtns: {
+        myAnswer: true,
+        isDisabled: true,
+      },
     }));
-    // quando mudar de questão precisa resetar o estado
+  };
+
+  timerCountdownHandler = () => {
+    const ONE_SECOND_COUNTER = 1000;
+    const { timer } = this.state;
+    const setTimer = setTimeout(() => {
+      this.setState({ timer: timer - ONE_SECOND_COUNTER });
+    }, ONE_SECOND_COUNTER);
+    if (!timer) {
+      clearTimeout(setTimer);
+    }
   };
 
   render() {
-    const { loading, questions, questionIndex } = this.state;
+    const { loading, questions, questionIndex, timer } = this.state;
+    this.timerCountdownHandler();
     return (
-      !loading
-      && (
-        <div>
-          <Header />
+      <div>
+        { loading && <p> Loading... </p> }
+        {!loading
+        && (
           <div>
-            <p data-testid="question-category">
-              {questions[questionIndex].category}
+            <Header />
+            <div>
+              <h3>{ timer }</h3>
+              <p data-testid="question-category">
+                {questions[questionIndex].category}
+              </p>
+            </div>
+
+            <p data-testid="question-text">
+              {questions[questionIndex].question}
             </p>
-          </div>
 
-          <p data-testid="question-text">
-            {questions[questionIndex].question}
-          </p>
-
-          <div data-testid="answer-options">
-            {this.createArrayOfAnswers()}
+            <div data-testid="answer-options">
+              {this.createArrayOfAnswers()}
+            </div>
           </div>
-        </div>
-      )
+        )}
+      </div>
     );
   }
 }
