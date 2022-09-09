@@ -87,7 +87,7 @@ class Login extends Component {
             data-testid="btn-settings"
             value="settings"
             type="button"
-            onClick={ this.handleClick }
+            onClick={ this.handleClickSettings }
           >
             Configurações
           </button>
