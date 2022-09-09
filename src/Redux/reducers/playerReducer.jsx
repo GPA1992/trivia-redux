@@ -1,10 +1,11 @@
-import { EMAIL_USER, LOGIN_USER, PERFORMANCE_USER } from '../action/types';
+import { LOGIN_USER, DID_ANSWER, PERFORMANCE_USER } from '../action/types';
 
 const INITIAL_STATE = {
   name: '',
   assertions: '',
   score: 0,
   gravatarEmail: '',
+  didAnswer: false,
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -12,12 +13,13 @@ const player = (state = INITIAL_STATE, action) => {
   case LOGIN_USER:
     return {
       ...state,
-      name: action.payload,
+      name: action.payload.name,
+      gravatarEmail: action.payload.email,
     };
-  case EMAIL_USER:
+  case DID_ANSWER:
     return {
       ...state,
-      gravatarEmail: action.payload,
+      didAnswer: true,
     };
   case PERFORMANCE_USER:
     return {

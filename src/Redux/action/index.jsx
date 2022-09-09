@@ -1,6 +1,6 @@
 import {
   LOGIN_USER,
-  EMAIL_USER,
+  DID_ANSWER,
   PERFORMANCE_USER,
 } from './types';
 
@@ -9,9 +9,8 @@ export const loginAction = (userData) => ({
   payload: userData,
 });
 
-export const getEmail = (emailData) => ({
-  type: EMAIL_USER,
-  payload: emailData,
+export const didUserAnswerAction = () => ({
+  type: DID_ANSWER,
 });
 
 export const userPerformance = (performanceData) => ({
