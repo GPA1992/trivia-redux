@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
 import { userPerformance } from '../Redux/action';
-import Header from '../components/Header';
 import Loading from './Loading';
 import Timer from '../components/Timer';
 import '../css/Game.style.css';
+import Header from '../components/Header';
 
 const INITIAL_STATE = {
   questions: {},
