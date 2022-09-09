@@ -7,7 +7,7 @@ const ONE_SECOND_COUNTER = 1000;
 
 class Timer extends Component {
   state = {
-    timer: 5000,
+    timer: 30000,
   };
 
   timerCountdownHandler = () => {
