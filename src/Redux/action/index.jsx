@@ -1,6 +1,8 @@
 import {
   LOGIN_USER,
-  EMAIL_USER,
+  DID_ANSWER,
+  PERFORMANCE_USER,
+  GET_PROFILE_PICTURE,
 } from './types';
 
 export const loginAction = (userData) => ({
@@ -8,7 +10,16 @@ export const loginAction = (userData) => ({
   payload: userData,
 });
 
-export const getEmail = (emailData) => ({
-  type: EMAIL_USER,
-  payload: emailData,
+export const didUserAnswerAction = () => ({
+  type: DID_ANSWER,
+});
+
+export const getProfilePictureAction = (gravatarImg) => ({
+  type: GET_PROFILE_PICTURE,
+  payload: gravatarImg,
+});
+
+export const userPerformance = (performanceData) => ({
+  type: PERFORMANCE_USER,
+  payload: performanceData,
 });

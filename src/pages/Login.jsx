@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tokenAPI from '../services/tokenAPI';
-import { loginAction, getEmail } from '../Redux/action';
+import { loginAction } from '../Redux/action';
 import '../css/Login.css';
 
 class Login extends Component {
@@ -28,7 +28,10 @@ class Login extends Component {
     this.setState({ [name]: value }, this.checkAllForm);
   };
 
-  handleClick = () => {
+  saveLocalStorageHandler = (keyName, value) => localStorage
+    .setItem(keyName, value);
+
+  handleClickSettings = () => {
     const { history } = this.props;
     history.push('/settings');
   };
@@ -36,12 +39,11 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email } = this.state;
-    const { setUser, setEmail, history } = this.props;
+    const { setUser, history } = this.props;
     const response = await tokenAPI();
     const { token } = response;
-    localStorage.setItem('token', token);
-    setUser(name);
-    setEmail(email);
+    this.saveLocalStorageHandler('token', token);
+    setUser({ name, email });
     history.push('/game');
   };
 
@@ -85,7 +87,7 @@ class Login extends Component {
             data-testid="btn-settings"
             value="settings"
             type="button"
-            onClick={ this.handleClick }
+            onClick={ this.handleClickSettings }
           >
             Configurações
           </button>
@@ -100,12 +102,11 @@ Login.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   setUser: PropTypes.func.isRequired,
-  setEmail: PropTypes.func.isRequired,
+
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setUser: (state) => dispatch(loginAction(state)),
-  setEmail: (state) => dispatch(getEmail(state)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
