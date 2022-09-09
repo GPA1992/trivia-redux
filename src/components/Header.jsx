@@ -20,6 +20,7 @@ class Header extends React.Component {
   render() {
     const { hash } = this.state;
     const { name, score } = this.props;
+    console.log(score);
     return (
       <header>
         <img
