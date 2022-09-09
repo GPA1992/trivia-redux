@@ -18,7 +18,9 @@ class Ranking extends Component {
     }
     const rankFromLocalStorage = JSON.parse(localStorage.getItem('ranking'));
 
-    this.setState({ ranking: rankFromLocalStorage });
+    const sortedRank = rankFromLocalStorage.sort(({ score: a }, { score: b }) => a - b);
+
+    this.setState({ ranking: sortedRank });
   }
 
   handleClick = () => {
@@ -52,7 +54,7 @@ class Ranking extends Component {
 const mapStateToProps = (state) => ({
   name: state.player.name,
   score: state.player.score,
-  picture: state.player.picture,
+  picture: state.player.gravatarImg,
 });
 
 Ranking.propTypes = {
