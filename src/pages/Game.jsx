@@ -50,7 +50,6 @@ class Game extends Component {
   getCorrectAnswer = () => {
     const { questions, questionIndex, myAnswer } = this.state;
     const { correct_answer: correctAnswer } = questions[questionIndex];
-    console.log(questions);
     return (
       <button
         key={ 4 }
