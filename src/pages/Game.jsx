@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
 import Header from '../components/Header';
+import Loading from './Loading';
+import Timer from '../components/Timer';
 import '../css/Game.style.css';
 
 const INITIAL_STATE = {
@@ -12,8 +15,8 @@ const INITIAL_STATE = {
     myAnswer: false,
     isDisabled: false,
   },
-  timer: 30000,
 };
+
 class Game extends Component {
   state = INITIAL_STATE;
 
@@ -37,7 +40,8 @@ class Game extends Component {
   getIncorrectAnswers = () => {
     const {
       questions,
-      questionIndex, answerBtns: { myAnswer, isDisabled }, timer } = this.state;
+      questionIndex, answerBtns: { myAnswer, isDisabled } } = this.state;
+    const { responseFromGlobalState } = this.props;
     const { incorrect_answers: incorrectAnswers } = questions[questionIndex];
 
     return incorrectAnswers.map((answer, index) => (
@@ -45,9 +49,10 @@ class Game extends Component {
         key={ index }
         type="button"
         data-testid={ `wrong-answer-${index}` }
-        className={ (myAnswer) ? 'wrong__answer' : '' }
+        className={ (myAnswer || responseFromGlobalState) ? 'wrong__answer' : '' }
         onClick={ this.clickAnswerHandler }
-        disabled={ isDisabled || !timer }
+        disabled={ isDisabled || responseFromGlobalState }
+
       >
         {answer}
       </button>
@@ -57,17 +62,17 @@ class Game extends Component {
   getCorrectAnswer = () => {
     const {
       questions,
-      questionIndex, answerBtns: { myAnswer, isDisabled }, timer } = this.state;
+      questionIndex, answerBtns: { myAnswer, isDisabled } } = this.state;
+    const { responseFromGlobalState } = this.props;
     const { correct_answer: correctAnswer } = questions[questionIndex];
     return (
       <button
         key={ 4 }
         type="button"
         data-testid="correct-answer"
-        className={ (myAnswer) ? 'correct__answer' : '' }
+        className={ (myAnswer || responseFromGlobalState) ? 'correct__answer' : '' }
         onClick={ this.clickAnswerHandler }
-        disabled={ isDisabled || !timer }
-        // id="correct"
+        disabled={ isDisabled || responseFromGlobalState }
       >
         {correctAnswer}
       </button>
@@ -88,38 +93,24 @@ class Game extends Component {
     }));
   };
 
-  timerCountdownHandler = () => {
-    const ONE_SECOND_COUNTER = 1000;
-    const { timer } = this.state;
-    const setTimer = setTimeout(() => {
-      this.setState({ timer: timer - ONE_SECOND_COUNTER });
-    }, ONE_SECOND_COUNTER);
-    if (!timer) {
-      clearTimeout(setTimer);
-    }
-  };
-
   render() {
-    const { loading, questions, questionIndex, timer } = this.state;
-    this.timerCountdownHandler();
+    const { loading, questions, questionIndex } = this.state;
     return (
       <div>
-        { loading && <p> Loading... </p> }
+        { loading && <Loading /> }
         {!loading
         && (
           <div>
             <Header />
             <div>
-              <h3>{ timer }</h3>
+              <Timer />
               <p data-testid="question-category">
                 {questions[questionIndex].category}
               </p>
             </div>
-
             <p data-testid="question-text">
               {questions[questionIndex].question}
             </p>
-
             <div data-testid="answer-options">
               {this.createArrayOfAnswers()}
             </div>
@@ -134,6 +125,11 @@ Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  responseFromGlobalState: PropTypes.bool.isRequired,
 };
 
-export default Game;
+const mapStateToProps = (state) => ({
+  responseFromGlobalState: state.player.didAnswer,
+});
+
+export default connect(mapStateToProps)(Game);
