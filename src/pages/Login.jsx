@@ -30,8 +30,8 @@ class Login extends Component {
     }, this.checkAllForm);
   };
 
-  saveLocalStorageHandler = (infoToSave, keyName) => localStorage
-    .setItem(infoToSave, keyName);
+  saveLocalStorageHandler = (keyName, value) => localStorage
+    .setItem(keyName, value);
 
   handleClickSettings = () => {
     const { history } = this.props;

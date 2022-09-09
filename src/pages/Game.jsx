@@ -14,6 +14,8 @@ const INITIAL_STATE = {
   },
   timer: 30000,
 };
+const ONE_SECOND_COUNTER = 1000;
+
 class Game extends Component {
   state = INITIAL_STATE;
 
@@ -45,7 +47,7 @@ class Game extends Component {
         key={ index }
         type="button"
         data-testid={ `wrong-answer-${index}` }
-        className={ (myAnswer) ? 'wrong__answer' : '' }
+        className={ (myAnswer || !timer) ? 'wrong__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || !timer }
       >
@@ -64,7 +66,7 @@ class Game extends Component {
         key={ 4 }
         type="button"
         data-testid="correct-answer"
-        className={ (myAnswer) ? 'correct__answer' : '' }
+        className={ (myAnswer || !timer) ? 'correct__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || !timer }
         // id="correct"
@@ -89,7 +91,6 @@ class Game extends Component {
   };
 
   timerCountdownHandler = () => {
-    const ONE_SECOND_COUNTER = 1000;
     const { timer } = this.state;
     const setTimer = setTimeout(() => {
       this.setState({ timer: timer - ONE_SECOND_COUNTER });
@@ -110,7 +111,7 @@ class Game extends Component {
           <div>
             <Header />
             <div>
-              <h3>{ timer }</h3>
+              <h3>{ timer / ONE_SECOND_COUNTER }</h3>
               <p data-testid="question-category">
                 {questions[questionIndex].category}
               </p>
