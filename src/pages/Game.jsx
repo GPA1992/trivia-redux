@@ -99,6 +99,11 @@ class Game extends Component {
     }
   };
 
+  handleClickTest = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   render() {
     const { loading, questions, questionIndex, timer } = this.state;
     this.timerCountdownHandler();
@@ -123,6 +128,10 @@ class Game extends Component {
             <div data-testid="answer-options">
               {this.createArrayOfAnswers()}
             </div>
+
+            <button data-testid="btn-go-home" type="button" onClick={ this.handleClickTest }>
+              rank
+            </button>
           </div>
         )}
       </div>
