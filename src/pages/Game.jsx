@@ -54,12 +54,6 @@ class Game extends Component {
     const { score } = this.state;
     const { setUserPerformance } = this.props;
     const base = 10;
-    this.setState(() => ({
-      answerBtns: {
-        myAnswer: true,
-        isDisabled: true,
-      },
-    }));
     if (target.name === 'correctAnswer') {
       const timer = document.getElementById('timer').innerHTML;
       const upScore = base + (timer * this.setDifficulty());
@@ -67,6 +61,12 @@ class Game extends Component {
         score: score + upScore,
       }, () => setUserPerformance(this.state));
     }
+    this.setState(() => ({
+      answerBtns: {
+        myAnswer: true,
+        isDisabled: true,
+      },
+    }));
   };
 
   getIncorrectAnswers = () => {
@@ -84,7 +84,6 @@ class Game extends Component {
         className={ (myAnswer || responseFromGlobalState) ? 'wrong__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || responseFromGlobalState }
-
       >
         {answer}
       </button>
@@ -103,7 +102,7 @@ class Game extends Component {
         type="button"
         data-testid="correct-answer"
         name="correctAnswer"
-        className={ (myAnswer) ? 'correct__answer' : '' }
+        className={ (myAnswer || responseFromGlobalState) ? 'correct__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || responseFromGlobalState }
       >
