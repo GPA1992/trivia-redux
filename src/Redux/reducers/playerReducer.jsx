@@ -1,4 +1,4 @@
-import { LOGIN_USER, DID_ANSWER } from '../action/types';
+import { LOGIN_USER, DID_ANSWER, PERFORMANCE_USER } from '../action/types';
 
 const INITIAL_STATE = {
   name: '',
@@ -20,6 +20,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       didAnswer: true,
+    };
+  case PERFORMANCE_USER:
+    return {
+      ...state,
+      score: Number(action.payload.score),
     };
   default:
     return state;

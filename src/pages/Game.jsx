@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import triviaAPI from '../services/triviaAPI';
+import { userPerformance } from '../Redux/action';
 import Header from '../components/Header';
 import Loading from './Loading';
 import Timer from '../components/Timer';
@@ -15,6 +16,8 @@ const INITIAL_STATE = {
     myAnswer: false,
     isDisabled: false,
   },
+  timer: 30000,
+  score: 0,
 };
 
 class Game extends Component {
@@ -37,6 +40,35 @@ class Game extends Component {
     return array.sort(() => Math.random() - SHUFFLE_NUMBER);
   };
 
+  setDifficulty = () => {
+    const { questions, questionIndex } = this.state;
+    const difficultyList = {
+      easy: 1,
+      medium: 2,
+      hard: 3,
+    };
+    return difficultyList[questions[questionIndex].difficulty];
+  };
+
+  clickAnswerHandler = ({ target }) => {
+    const { score } = this.state;
+    const { setUserPerformance } = this.props;
+    const base = 10;
+    if (target.name === 'correctAnswer') {
+      const timer = document.getElementById('timer').innerHTML;
+      const upScore = base + (timer * this.setDifficulty());
+      this.setState({
+        score: score + upScore,
+      }, () => setUserPerformance(this.state));
+    }
+    this.setState(() => ({
+      answerBtns: {
+        myAnswer: true,
+        isDisabled: true,
+      },
+    }));
+  };
+
   getIncorrectAnswers = () => {
     const {
       questions,
@@ -52,7 +84,6 @@ class Game extends Component {
         className={ (myAnswer || responseFromGlobalState) ? 'wrong__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || responseFromGlobalState }
-
       >
         {answer}
       </button>
@@ -70,6 +101,7 @@ class Game extends Component {
         key={ 4 }
         type="button"
         data-testid="correct-answer"
+        name="correctAnswer"
         className={ (myAnswer || responseFromGlobalState) ? 'correct__answer' : '' }
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || responseFromGlobalState }
@@ -82,15 +114,6 @@ class Game extends Component {
   createArrayOfAnswers = () => {
     const arrayOfAnswers = [...this.getIncorrectAnswers(), this.getCorrectAnswer()];
     return this.shuffleArray(arrayOfAnswers);
-  };
-
-  clickAnswerHandler = () => {
-    this.setState(() => ({
-      answerBtns: {
-        myAnswer: true,
-        isDisabled: true,
-      },
-    }));
   };
 
   render() {
@@ -126,10 +149,15 @@ Game.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   responseFromGlobalState: PropTypes.bool.isRequired,
+  setUserPerformance: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   responseFromGlobalState: state.player.didAnswer,
 });
 
-export default connect(mapStateToProps)(Game);
+const mapDispatchToProps = (dispatch) => ({
+  setUserPerformance: (performanceData) => dispatch(userPerformance(performanceData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

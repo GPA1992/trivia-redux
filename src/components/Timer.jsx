@@ -25,7 +25,7 @@ class Timer extends Component {
   render() {
     const { timer } = this.state;
     this.timerCountdownHandler();
-    return <h3>{ timer / ONE_SECOND_COUNTER }</h3>;
+    return <h3 id="timer">{ timer / ONE_SECOND_COUNTER }</h3>;
   }
 }
 
