@@ -33,7 +33,6 @@ const player = (state = INITIAL_STATE, action) => {
       score: Number(action.payload.score),
     };
   case GET_PROFILE_PICTURE:
-    console.log('cheguei no reducer:', action);
     return {
       ...state,
       gravatarImg: action.payload,
