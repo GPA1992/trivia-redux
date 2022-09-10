@@ -1,10 +1,16 @@
-import { LOGIN_USER, DID_ANSWER, PERFORMANCE_USER } from '../action/types';
+import {
+  LOGIN_USER,
+  DID_ANSWER,
+  PERFORMANCE_USER,
+  GET_PROFILE_PICTURE,
+} from '../action/types';
 
 const INITIAL_STATE = {
   name: '',
   assertions: '',
   score: 0,
   gravatarEmail: '',
+  gravatarImg: '',
   didAnswer: false,
 };
 
@@ -25,6 +31,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score + action.payload,
+    };
+  case GET_PROFILE_PICTURE:
+    return {
+      ...state,
+      gravatarImg: action.payload,
     };
   default:
     return state;
