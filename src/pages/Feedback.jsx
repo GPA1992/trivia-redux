@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import { NextQuestionAction } from '../Redux/action';
 
 class Feedback extends React.Component {
+  // TODO - necessário resetar o score a 0 quando inicia novo jogo
   goToLogin = () => {
-    const { history } = this.props;
+    const { history, nextQuestion } = this.props;
+    nextQuestion();
     history.push('/');
   };
 
@@ -54,9 +57,13 @@ const mapStateToProps = (store) => ({
   score: store.player.score,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  nextQuestion: () => dispatch(NextQuestionAction()),
+});
+
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
 }.isRequired;
 
-export default connect(mapStateToProps)(Feedback);
+export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
