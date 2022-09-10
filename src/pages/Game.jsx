@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Countdown from 'react-countdown';
 import triviaAPI from '../services/triviaAPI';
 import { userPerformance, didUserAnswerAction } from '../Redux/action';
-import Header from '../components/Header';
 import Loading from './Loading';
+import Header from '../components/Header';
 import '../css/Game.style.css';
 
 const INITIAL_STATE = {
