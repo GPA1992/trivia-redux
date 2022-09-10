@@ -30,7 +30,7 @@ const player = (state = INITIAL_STATE, action) => {
   case PERFORMANCE_USER:
     return {
       ...state,
-      score: Number(action.payload.score),
+      score: state.score + action.payload,
     };
   case GET_PROFILE_PICTURE:
     return {
