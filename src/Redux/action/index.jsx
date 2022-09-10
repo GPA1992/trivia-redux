@@ -3,6 +3,7 @@ import {
   DID_ANSWER,
   PERFORMANCE_USER,
   GET_PROFILE_PICTURE,
+  RESET_ANSWER,
 } from './types';
 
 export const loginAction = (userData) => ({
@@ -13,6 +14,11 @@ export const loginAction = (userData) => ({
 export const didUserAnswerAction = (val) => ({
   type: DID_ANSWER,
   payload: val,
+});
+
+export const NextQuestionAction = () => ({
+  type: RESET_ANSWER,
+  // payload: val,
 });
 
 export const getProfilePictureAction = (gravatarImg) => ({

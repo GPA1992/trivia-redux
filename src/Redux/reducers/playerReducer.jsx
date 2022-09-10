@@ -3,6 +3,7 @@ import {
   DID_ANSWER,
   PERFORMANCE_USER,
   GET_PROFILE_PICTURE,
+  RESET_ANSWER,
 } from '../action/types';
 
 const INITIAL_STATE = {
@@ -26,6 +27,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       didAnswer: action.payload,
+    };
+  case RESET_ANSWER:
+    return {
+      ...state,
+      didAnswer: false,
     };
   case PERFORMANCE_USER:
     return {

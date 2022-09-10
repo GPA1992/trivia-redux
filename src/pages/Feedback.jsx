@@ -17,6 +17,7 @@ class Feedback extends React.Component {
   render() {
     const { assertions, score } = this.props;
     const THREE = 3;
+    console.log('renderizando feedback');
     return (
       <div>
         <div>
@@ -49,8 +50,8 @@ class Feedback extends React.Component {
 }
 
 const mapStateToProps = (store) => ({
-  assertions: store.playerReducer.assertions,
-  score: store.playerReducer.score,
+  assertions: store.player.assertions,
+  score: store.player.score,
 });
 
 Feedback.propTypes = {

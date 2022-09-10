@@ -5,3 +5,4 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const DID_ANSWER = 'DID_ANSWER';
 export const PERFORMANCE_USER = 'PERFORMANCE_USER';
 export const GET_PROFILE_PICTURE = 'GET_PROFILE_PICTURE';
+export const RESET_ANSWER = 'RESET_ANSWER';

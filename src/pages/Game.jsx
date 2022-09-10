@@ -3,16 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Countdown from 'react-countdown';
 import triviaAPI from '../services/triviaAPI';
-import { userPerformance, didUserAnswerAction } from '../Redux/action';
+import { userPerformance,
+  didUserAnswerAction, NextQuestionAction } from '../Redux/action';
 import Loading from './Loading';
 import Header from '../components/Header';
 import '../css/Game.style.css';
 
 const INITIAL_STATE = {
   timer: 30000,
-  questions: {},
-  questionIndex: 0,
-  loading: true,
   answerBtns: {
     myAnswer: false,
     isDisabled: false,
@@ -22,7 +20,12 @@ const INITIAL_STATE = {
 const ONE_SECOND_COUNTER = 1000;
 
 class Game extends Component {
-  state = INITIAL_STATE;
+  state = {
+    ...INITIAL_STATE,
+    questions: {},
+    questionIndex: 0,
+    loading: true,
+  };
 
   async componentDidMount() {
     const { history } = this.props;
@@ -133,7 +136,16 @@ class Game extends Component {
   };
 
   changeQuestion = () => {
-    console.log('eu vou para próxima pergunta');
+    const { nextQuestion, history } = this.props;
+    const { questionIndex } = this.state;
+    const LAST_QUESTION_INDEX = 4;
+    if (questionIndex < LAST_QUESTION_INDEX) {
+      this.setState((prev) => ({
+        questionIndex: prev.questionIndex + 1,
+        ...INITIAL_STATE,
+      }));
+      nextQuestion();
+    } else history.push('/feedback');
   };
 
   render() {
@@ -187,6 +199,7 @@ Game.propTypes = {
   responseFromGlobalState: PropTypes.bool.isRequired,
   setUserPerformance: PropTypes.func.isRequired,
   didAnswer: PropTypes.func.isRequired,
+  nextQuestion: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -196,6 +209,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setUserPerformance: (performanceData) => dispatch(userPerformance(performanceData)),
   didAnswer: (val) => dispatch(didUserAnswerAction(val)),
+  nextQuestion: () => dispatch(NextQuestionAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
