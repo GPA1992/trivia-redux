@@ -132,6 +132,10 @@ class Game extends Component {
     didAnswer(myAnswer);
   };
 
+  changeQuestion = () => {
+    console.log('eu vou para próxima pergunta');
+  };
+
   render() {
     const { loading, questions, questionIndex, timer, answerBtns } = this.state;
     return (
@@ -165,6 +169,7 @@ class Game extends Component {
               <button
                 type="button"
                 data-testid="btn-next"
+                onClick={ this.changeQuestion }
               >
                 Next
               </button>)}
