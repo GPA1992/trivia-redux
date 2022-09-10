@@ -10,8 +10,9 @@ export const loginAction = (userData) => ({
   payload: userData,
 });
 
-export const didUserAnswerAction = () => ({
+export const didUserAnswerAction = (val) => ({
   type: DID_ANSWER,
+  payload: val,
 });
 
 export const getProfilePictureAction = (gravatarImg) => ({

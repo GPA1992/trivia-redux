@@ -117,15 +117,19 @@ class Game extends Component {
   };
 
   onTimerFinished = () => {
-    const { didAnswer } = this.props;
-    didAnswer();
     this.setState({
       timer: 0,
       answerBtns: {
         myAnswer: true,
         isDisabled: true,
       },
-    });
+    }, () => this.updateGlobalAnswer());
+  };
+
+  updateGlobalAnswer = () => {
+    const { didAnswer } = this.props;
+    const { answerBtns: { myAnswer } } = this.state;
+    didAnswer(myAnswer);
   };
 
   render() {
@@ -186,7 +190,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setUserPerformance: (performanceData) => dispatch(userPerformance(performanceData)),
-  didAnswer: () => dispatch(didUserAnswerAction()),
+  didAnswer: (val) => dispatch(didUserAnswerAction(val)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

@@ -23,9 +23,10 @@ const player = (state = INITIAL_STATE, action) => {
       gravatarEmail: action.payload.email,
     };
   case DID_ANSWER:
+    console.log(action.payload);
     return {
       ...state,
-      didAnswer: true,
+      didAnswer: action.payload,
     };
   case PERFORMANCE_USER:
     return {
