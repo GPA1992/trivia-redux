@@ -17,6 +17,7 @@ const INITIAL_STATE = {
   },
 };
 
+const LAST_QUESTION_INDEX = 4;
 const ONE_SECOND_COUNTER = 1000;
 
 class Game extends Component {
@@ -138,7 +139,6 @@ class Game extends Component {
   changeQuestion = () => {
     const { nextQuestion, history } = this.props;
     const { questionIndex } = this.state;
-    const LAST_QUESTION_INDEX = 4;
     if (questionIndex < LAST_QUESTION_INDEX) {
       this.setState((prev) => ({
         questionIndex: prev.questionIndex + 1,
@@ -150,6 +150,8 @@ class Game extends Component {
 
   render() {
     const { loading, questions, questionIndex, timer, answerBtns } = this.state;
+    const NextQuestionBtn = ((questionIndex < LAST_QUESTION_INDEX)
+      ? <p> Next </p> : <p> Feedback </p>);
     return (
       <div>
         { loading && <Loading /> }
@@ -183,7 +185,7 @@ class Game extends Component {
                 data-testid="btn-next"
                 onClick={ this.changeQuestion }
               >
-                Next
+                {NextQuestionBtn}
               </button>)}
           </div>
         )}
@@ -208,7 +210,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setUserPerformance: (performanceData) => dispatch(userPerformance(performanceData)),
-  didAnswer: (val) => dispatch(didUserAnswerAction(val)),
+  didAnswer: (boolVal) => dispatch(didUserAnswerAction(boolVal)),
   nextQuestion: () => dispatch(NextQuestionAction()),
 });
 

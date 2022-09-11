@@ -67,12 +67,11 @@ describe(' Testando a Página Login e seus respectivos componentes', () => {
   });
 
   it('verifica se ao em "play", é adicionado uma chave token na localStorage e o usuário é redirecionado à página "/game"', async () => {
-    const mockedQuestions = questionsResponse;
     const mockedToken = tokenResponse.token;
     const { history } = renderWithRouterAndRedux(<App />);
 
     jest.spyOn(global, 'fetch').mockResolvedValue({
-      json: jest.fn().mockResolvedValue(mockedQuestions),
+      json: jest.fn().mockResolvedValue(questionsResponse),
     });
 
     const inputName = screen.getByLabelText(/Nome/i);
