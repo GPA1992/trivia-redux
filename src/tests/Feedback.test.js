@@ -1,13 +1,11 @@
 import React from 'react';
-import { screen, cleanup, waitFor } from '@testing-library/react';
+import { screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App';
-import triviaAPI from '../services/triviaAPI';
-import { tokenResponse, invalidTokenResponse } from '../../cypress/mocks/token';
+import { tokenResponse } from '../../cypress/mocks/token';
 import {
   questionsResponse,
-  invalidTokenQuestionsResponse,
 } from '../../cypress/mocks/questions';
 
 const initialState = {
