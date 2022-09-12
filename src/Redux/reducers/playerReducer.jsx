@@ -38,6 +38,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score + action.payload,
+      assertions: state.assertions + 1,
     };
   case GET_PROFILE_PICTURE:
     return {
@@ -48,6 +49,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: 0,
+      assertions: 0,
     };
   default:
     return state;
