@@ -5,9 +5,9 @@ import Countdown from 'react-countdown';
 import triviaAPI from '../services/triviaAPI';
 import { userPerformance,
   didUserAnswerAction, NextQuestionAction } from '../Redux/action';
-import Loading from './Loading';
+import Loading from '../components/Loading';
 import Header from '../components/Header';
-import '../css/Game.style.css';
+import '../css/Game.css';
 
 const INITIAL_STATE = {
   timer: 30000,
@@ -153,42 +153,50 @@ class Game extends Component {
     const NextQuestionBtn = ((questionIndex < LAST_QUESTION_INDEX)
       ? <p> Next </p> : <p> Feedback </p>);
     return (
-      <div>
-        { loading && <Loading /> }
-        {!loading
-        && (
-          <div>
-            <Header />
-            <div>
-              <h3>
-                <Countdown
-                  onComplete={ this.onTimerFinished }
-                  name="timer"
-                  date={ Date.now() + timer }
-                  renderer={ ({ total }) => (
-                    <p id="timer">{ total / ONE_SECOND_COUNTER}</p>) }
-                />
-              </h3>
-              <p data-testid="question-category">
-                {questions[questionIndex].category}
-              </p>
-            </div>
-            <p data-testid="question-text">
-              {questions[questionIndex].question}
-            </p>
-            <div data-testid="answer-options">
-              {this.createArrayOfAnswers()}
-            </div>
-            {answerBtns.isDisabled && (
-              <button
-                type="button"
-                data-testid="btn-next"
-                onClick={ this.changeQuestion }
-              >
-                {NextQuestionBtn}
-              </button>)}
-          </div>
-        )}
+      <div className="Game">
+        {
+          loading
+            ? <Loading />
+            : (
+              <div className="game-container">
+                <Header />
+                <div className="question-container">
+                  <h3 className="counter">
+                    <Countdown
+                      onComplete={ this.onTimerFinished }
+                      name="timer"
+                      date={ Date.now() + timer }
+                      renderer={ ({ total }) => (
+                        <p id="timer">{ total / ONE_SECOND_COUNTER}</p>) }
+                    />
+                  </h3>
+                  <p className="category-title">
+                    Category:
+                    <span className="category-text" data-testid="question-category">
+                      {questions[questionIndex].category}
+                    </span>
+                  </p>
+                  <p className="question-text" data-testid="question-text">
+                    {questions[questionIndex].question}
+                  </p>
+                </div>
+                <div className="bottom-game">
+                  <div className="answers-container" data-testid="answer-options">
+                    {this.createArrayOfAnswers()}
+                  </div>
+                  {answerBtns.isDisabled && (
+                    <button
+                      className="next-button"
+                      type="button"
+                      data-testid="btn-next"
+                      onClick={ this.changeQuestion }
+                    >
+                      {NextQuestionBtn}
+                    </button>)}
+                </div>
+              </div>
+            )
+        }
       </div>
     );
   }
