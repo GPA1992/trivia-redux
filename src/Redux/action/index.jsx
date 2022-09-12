@@ -4,6 +4,7 @@ import {
   PERFORMANCE_USER,
   GET_PROFILE_PICTURE,
   RESET_ANSWER,
+  RESET_SCORE,
 } from './types';
 
 export const loginAction = (userData) => ({
@@ -29,4 +30,8 @@ export const getProfilePictureAction = (gravatarImg) => ({
 export const userPerformance = (performanceData) => ({
   type: PERFORMANCE_USER,
   payload: performanceData,
+});
+
+export const resetScoreAction = () => ({
+  type: RESET_SCORE,
 });
