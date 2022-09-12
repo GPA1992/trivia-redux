@@ -1,0 +1,35 @@
+header {
+  align-items: center;
+  color: var(--white);
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 90%;
+}
+
+.header-picture {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.header-user {
+  align-items: center;
+  display: flex;
+}
+
+.header-name {
+  margin-left: 5px;
+}
+
+.header-score-container {
+  background-color: rgb(0, 0, 0, 0.5);
+  border-radius: 20px;
+  text-align: center;
+  width: 100px;
+}
+
+.header-score {
+  margin-left: 5px;
+}

@@ -1,0 +1,110 @@
+.Game {
+  background: var(--primary);
+  display: flex;
+  min-height: 100vh;
+}
+
+.game-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.question-container {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px -1px rgb(1, 17, 29, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 15px 30px;
+  position: relative;
+  width: 70%;
+}
+
+.counter {
+  align-items: center;
+  background-color: var(--white);
+  border: 3px var(--primary-no-gradient) solid;
+  border-radius: 50%;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin-left: calc(50% - 30px);
+  outline: 5px var(--white) solid;
+  position: absolute;
+  top: -50px;
+  transform: translate(-50%);
+  width: 50px;
+}
+
+.category-title {
+  font-size: 0.8em;
+  margin: 15px 0 0;
+  text-align: center;
+}
+
+.category-text {
+  margin-left: 5px;
+}
+
+.question-text {
+  font-weight: 800;
+  text-align: center;
+}
+
+.bottom-game {
+  align-items: center;
+  background-color: var(--light);
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.answers-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 80%;
+}
+
+.answers-container button {
+  background-color: var(--white);
+  border: 3px solid var(--white);
+  border-radius: 10px;
+  box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
+  color: var(--black);
+  font-size: 1em;
+  font-weight: 500;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.answers-container button:enabled {
+  cursor: pointer;
+}
+
+.answers-container .correct__answer {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.answers-container .wrong__answer {
+  border: 3px solid red;
+}
+
+.next-button {
+  background: var(--primary);
+  border: none;
+  border-radius: 20px;
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  padding: 0 50px;
+}

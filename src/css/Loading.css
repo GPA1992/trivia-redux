@@ -1,0 +1,8 @@
+.Loading {
+  align-items: center;
+  background: var(--primary);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
