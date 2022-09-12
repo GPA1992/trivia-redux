@@ -36,8 +36,10 @@ class Game extends Component {
     if (!questions.length) {
       localStorage.removeItem('token');
       history.push('/');
+      //! sempre que executar um if que a aplicação não pode seguir adianta, retornar algo ou especificar o ELSE
+    } else {
+      this.setState({ questions, loading: false });
     }
-    this.setState({ questions, loading: false });
   }
 
   shuffleArray = (array) => {
