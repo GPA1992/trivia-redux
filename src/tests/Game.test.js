@@ -105,4 +105,51 @@ describe('Testando a página Game e seus respectivos componentes', () => {
     userEvent.click(wrongBtn);
     expect(wrongBtn.className).toBe('wrong__answer');
   });
+
+  it('verifica se após responder as perguntas, o botão de Feedback apararece e ao clicar é redirecionado para a página de Feedback', async () => {
+    const { history } = renderWithRouterAndRedux(
+      <App />,
+      initialState,
+      '/game'
+    );
+
+    let correctBtn = await screen.findByTestId('correct-answer');
+    expect(correctBtn).toBeInTheDocument();
+    userEvent.click(correctBtn);
+
+    let nextQuestionBtn = await screen.findByText('Next');
+    expect(nextQuestionBtn).toBeInTheDocument();
+    userEvent.click(nextQuestionBtn);
+
+    correctBtn = await screen.findByTestId('correct-answer');
+    expect(correctBtn).toBeInTheDocument();
+    userEvent.click(correctBtn);
+    nextQuestionBtn = await screen.findByText('Next');
+    expect(nextQuestionBtn).toBeInTheDocument();
+    userEvent.click(nextQuestionBtn);
+
+    correctBtn = await screen.findByTestId('correct-answer');
+    expect(correctBtn).toBeInTheDocument();
+    userEvent.click(correctBtn);
+    nextQuestionBtn = await screen.findByText('Next');
+    expect(nextQuestionBtn).toBeInTheDocument();
+    userEvent.click(nextQuestionBtn);
+
+    correctBtn = await screen.findByTestId('correct-answer');
+    expect(correctBtn).toBeInTheDocument();
+    userEvent.click(correctBtn);
+    nextQuestionBtn = await screen.findByText('Next');
+    expect(nextQuestionBtn).toBeInTheDocument();
+    userEvent.click(nextQuestionBtn);
+
+    correctBtn = await screen.findByTestId('correct-answer');
+    expect(correctBtn).toBeInTheDocument();
+    userEvent.click(correctBtn);
+    const Feedback = await screen.findByText('Feedback');
+    expect(Feedback).toBeInTheDocument();
+    userEvent.click(Feedback);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/feedback');
+  });
 });
