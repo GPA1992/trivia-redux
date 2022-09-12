@@ -33,3 +33,10 @@ header {
 .header-score {
   margin-left: 5px;
 }
+
+@media only screen and ( min-width : 764px ) {
+
+  header {
+    width: 75%;
+  }
+}
