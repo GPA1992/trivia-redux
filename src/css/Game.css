@@ -27,8 +27,8 @@
 .counter {
   align-items: center;
   background-color: var(--white);
-  border: 3px var(--primary-no-gradient) solid;
   border-radius: 50%;
+  border: 3px var(--primary-no-gradient) solid;
   display: flex;
   height: 50px;
   justify-content: center;
@@ -75,8 +75,8 @@
 
 .answers-container button {
   background-color: var(--white);
-  border: 3px solid var(--white);
   border-radius: 10px;
+  border: 3px solid var(--white);
   box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
   color: var(--black);
   font-size: 1em;
@@ -99,12 +99,55 @@
 
 .next-button {
   background: var(--primary);
-  border: none;
   border-radius: 20px;
+  border: none;
   color: var(--white);
   cursor: pointer;
   font-weight: 500;
   letter-spacing: 1px;
   margin-top: 10px;
   padding: 0 50px;
+}
+
+@media only screen and ( min-width : 768px ) {
+  
+  .question-container {
+    height: 50%;
+    position: relative;
+    width: 70%;
+  }
+
+  .counter {
+    height: 70px;
+    width: 70px;
+  }
+
+  .category-title {
+    font-size: 1em;
+    margin-top: 30px;
+  }
+
+  .question-text {
+    font-size: 1.4em;
+    padding: 20px 100px;
+    margin: 0;
+  }
+
+  .answers-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .bottom-game {
+    justify-content: center;
+  }
+
+  .answers-container button {
+    font-size: 1.2em;
+    font-weight: 600;
+    height: 80px;
+    width: 44%;
+  }
 }
