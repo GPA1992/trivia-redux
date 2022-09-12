@@ -4,6 +4,7 @@ import {
   PERFORMANCE_USER,
   GET_PROFILE_PICTURE,
   RESET_ANSWER,
+  RESET_SCORE,
 } from '../action/types';
 
 const INITIAL_STATE = {
@@ -42,6 +43,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       gravatarImg: action.payload,
+    };
+  case RESET_SCORE:
+    return {
+      ...state,
+      score: 0,
     };
   default:
     return state;

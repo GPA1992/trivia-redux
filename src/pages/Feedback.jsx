@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import { NextQuestionAction } from '../Redux/action';
+import { NextQuestionAction, resetScoreAction } from '../Redux/action';
 
 class Feedback extends React.Component {
-  // TODO - necessário resetar o score a 0 quando inicia novo jogo
   goToLogin = () => {
-    const { history, nextQuestion } = this.props;
+    const { history, nextQuestion, resetScore } = this.props;
     nextQuestion();
+    resetScore();
     history.push('/');
   };
 
@@ -27,8 +27,8 @@ class Feedback extends React.Component {
           <Header />
           <h1 data-testid="feedback-text">Feedback</h1>
           { assertions < THREE
-            ? <p data-testid="feedback-text">Could be better...</p>
-            : <p data-testid="feedback-text">Well Done!</p>}
+            ? <h1 data-testid="feedback-text">Could be better...</h1>
+            : <h1 data-testid="feedback-text">Well Done!</h1>}
 
           <p data-testid="feedback-total-question">{ assertions }</p>
           <p data-testid="feedback-total-score">{ score }</p>
@@ -59,11 +59,13 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   nextQuestion: () => dispatch(NextQuestionAction()),
+  resetScore: () => dispatch(resetScoreAction()),
 });
 
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
+  resetScore: PropTypes.func.isRequired,
 }.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { resetScoreAction } from '../Redux/action';
 
 class Ranking extends Component {
   state = {
@@ -18,13 +19,14 @@ class Ranking extends Component {
     }
     const rankFromLocalStorage = JSON.parse(localStorage.getItem('ranking'));
 
-    const sortedRank = rankFromLocalStorage.sort(({ score: a }, { score: b }) => a - b);
+    const sortedRank = rankFromLocalStorage.sort(({ score: a }, { score: b }) => b - a);
 
     this.setState({ ranking: sortedRank });
   }
 
   handleClick = () => {
-    const { history } = this.props;
+    const { history, resetScore } = this.props;
+    resetScore();
     history.push('/');
   };
 
@@ -32,6 +34,7 @@ class Ranking extends Component {
     const { ranking } = this.state;
     return (
       <div>
+        <h1 data-testid="ranking-title">Ranking</h1>
         <div>
           {
             ranking.map(({ name, score, picture }, index) => (
@@ -57,6 +60,10 @@ const mapStateToProps = (state) => ({
   picture: state.player.gravatarImg,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  resetScore: () => dispatch(resetScoreAction()),
+});
+
 Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -64,6 +71,7 @@ Ranking.propTypes = {
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   picture: PropTypes.string.isRequired,
+  resetScore: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Ranking);
+export default connect(mapStateToProps, mapDispatchToProps)(Ranking);

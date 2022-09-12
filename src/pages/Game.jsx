@@ -144,8 +144,8 @@ class Game extends Component {
         questionIndex: prev.questionIndex + 1,
         ...INITIAL_STATE,
       }));
-      nextQuestion();
     } else history.push('/feedback');
+    nextQuestion();
   };
 
   render() {

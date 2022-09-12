@@ -6,3 +6,4 @@ export const DID_ANSWER = 'DID_ANSWER';
 export const PERFORMANCE_USER = 'PERFORMANCE_USER';
 export const GET_PROFILE_PICTURE = 'GET_PROFILE_PICTURE';
 export const RESET_ANSWER = 'RESET_ANSWER';
+export const RESET_SCORE = 'RESET_SCORE';
