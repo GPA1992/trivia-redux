@@ -141,6 +141,9 @@ class Game extends Component {
   changeQuestion = () => {
     const { nextQuestion, history } = this.props;
     const { questionIndex } = this.state;
+    const WAIT_TIME = 500;
+    this.setState({ loading: true });
+    setTimeout(() => this.setState({ loading: false }), WAIT_TIME);
     if (questionIndex < LAST_QUESTION_INDEX) {
       this.setState((prev) => ({
         questionIndex: prev.questionIndex + 1,
