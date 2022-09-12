@@ -108,3 +108,57 @@
   margin-top: 10px;
   padding: 0 50px;
 }
+
+@media only screen and ( min-width : 764px ) {
+
+  .question-container {
+    height: 50%;
+    position: relative;
+    width: 70%;
+  }
+
+  .counter {
+    font-size: 1.3em;
+    height: 70px;
+    width: 70px;
+  }
+
+  .category-title {
+    font-size: 1em;
+    margin-top: 30px;
+  }
+
+  .question-text {
+    font-size: 1.4em;
+    margin: 0;
+    padding: 20px 100px;
+  }
+
+  .answers-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  .bottom-game {
+    justify-content: center;
+  }
+
+  .answers-container button {
+    align-items: center;
+    display: flex;
+    font-size: 1.1em;
+    font-weight: 600;
+    height: 80px;
+    justify-content: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    width: 44%;
+  }
+
+  .next-button {
+    font-size: 1em;
+    font-weight: 600;
+    width: 30%;
+  }
+}
