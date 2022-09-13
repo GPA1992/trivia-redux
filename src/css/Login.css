@@ -17,7 +17,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding-block: 30px; */
   padding: 0 42px 40px 42px;
   background-color: var(--white);
 }
@@ -44,12 +43,6 @@ body {
   99%   {color: var(--color-3)}
   100%  {color: var(--color-1)}
 }
-
-/* .Login label {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-} */
 
 .Login input {
   font-family: 'Manrope' , sans-serif;
@@ -82,4 +75,24 @@ body {
 
 .Login button:enabled {
   cursor: pointer;
+}
+
+@media only screen and ( min-width : 864px ) {
+  .Login form {
+    width: 500px;
+  }
+
+  .Login input {
+    width: 80%;
+  }
+
+  .Login div {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .Login div button {
+    width: 220px;
+  }
 }
