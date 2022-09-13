@@ -18,8 +18,8 @@ describe(' Testando a Página Login e seus respectivos componentes', () => {
   it(' Verifica se a tela de login existe', () => {
     renderWithRouterAndRedux(<App />);
 
-    const inputName = screen.getByLabelText(/Nome/i);
-    const inputEmail = screen.getByLabelText(/Email/i);
+    const inputName = screen.getByPlaceholderText(/Name/i);
+    const inputEmail = screen.getByPlaceholderText(/E-mail/i);
     const playBtn = screen.getByRole('button', {
       name: /Play/i,
     });
@@ -44,8 +44,8 @@ describe(' Testando a Página Login e seus respectivos componentes', () => {
 
   it('Verifica se ao digitar um nome e email válido, o botão é habilitado', () => {
     renderWithRouterAndRedux(<App />);
-    const inputName = screen.getByLabelText(/Nome/i);
-    const inputEmail = screen.getByLabelText(/Email/i);
+    const inputName = screen.getByPlaceholderText(/Name/i);
+    const inputEmail = screen.getByPlaceholderText(/E-mail/i);
     const playBtn = screen.getByRole('button', {
       name: /Play/i,
     });
@@ -74,8 +74,8 @@ describe(' Testando a Página Login e seus respectivos componentes', () => {
       json: jest.fn().mockResolvedValue(questionsResponse),
     });
 
-    const inputName = screen.getByLabelText(/Nome/i);
-    const inputEmail = screen.getByLabelText(/Email/i);
+    const inputName = screen.getByPlaceholderText(/Name/i);
+    const inputEmail = screen.getByPlaceholderText(/E-mail/i);
     const playBtn = screen.getByRole('button', {
       name: /Play/i,
     });

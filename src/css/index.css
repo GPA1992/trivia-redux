@@ -13,6 +13,8 @@ body {
 
   --secondary: rgba(241, 148, 27, 0.74);
 
+  --tertiary: rgba(241, 149, 27, 1);
+
   --white: white;
 
   --light: hsl(0, 0%, 95%);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tokenAPI from '../services/tokenAPI';
 import { loginAction } from '../Redux/action';
+import Logo from '../components/Logo';
 import '../css/Login.css';
 
 class Login extends Component {
@@ -52,45 +53,41 @@ class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={ (e) => this.handleSubmit(e) }>
-          <label htmlFor="player-name">
-            Nome
-            <input
-              onChange={ this.handleChange }
-              name="name"
-              id="player-name"
-              data-testid="input-player-name"
-              type="text"
-            />
-          </label>
-
-          <label htmlFor="gravatar-email">
-            Email
-            <input
-              onChange={ this.handleChange }
-              name="email"
-              id="gravatar-email"
-              data-testid="input-gravatar-email"
-              type="text"
-            />
-          </label>
-
-          <button
-            data-testid="btn-play"
-            value="play"
-            type="submit"
-            disabled={ isBtnDisabled }
-          >
-            Play
-          </button>
-
-          <button
-            data-testid="btn-settings"
-            value="settings"
-            type="button"
-            onClick={ this.handleClickSettings }
-          >
-            Configurações
-          </button>
+          <Logo />
+          <input
+            onChange={ this.handleChange }
+            name="name"
+            id="player-name"
+            data-testid="input-player-name"
+            type="text"
+            placeholder="Name"
+          />
+          <input
+            onChange={ this.handleChange }
+            name="email"
+            id="gravatar-email"
+            data-testid="input-gravatar-email"
+            type="text"
+            placeholder="E-mail"
+          />
+          <div>
+            <button
+              data-testid="btn-play"
+              value="play"
+              type="submit"
+              disabled={ isBtnDisabled }
+            >
+              Play
+            </button>
+            <button
+              data-testid="btn-settings"
+              value="settings"
+              type="button"
+              onClick={ this.handleClickSettings }
+            >
+              Configurações
+            </button>
+          </div>
         </form>
       </div>
     );
