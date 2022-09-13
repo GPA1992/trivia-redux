@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tokenAPI from '../services/tokenAPI';
 import { loginAction } from '../Redux/action';
+import Logo from '../components/Logo';
 import '../css/Login.css';
 
 class Login extends Component {
@@ -52,7 +53,7 @@ class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={ (e) => this.handleSubmit(e) }>
-          <h1 className="title-trivia-animated">TRIVIA</h1>
+          <Logo />
           <input
             onChange={ this.handleChange }
             name="name"

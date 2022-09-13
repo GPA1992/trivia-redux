@@ -2,6 +2,14 @@ body {
   background: var(--primary);
 }
 
+.Logo {
+  margin-bottom: 30px;
+}
+
+.logo-text {
+  font-size: 42px;
+}
+
 .Login {
   align-items: center;
   display: flex;
@@ -17,31 +25,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 42px 40px 42px;
+  padding: 30px 42px 40px 42px;
   background-color: var(--white);
-}
-
-.Login form h1 {
-  font-family: 'Manrope' , sans-serif;
-  font-size: 40px;
-  font-weight: 1000;
-  animation: color-animation 4s linear infinite;
-}
-
-.title-trivia-animated {
-  --color-1: var(--primary-no-gradient);
-  --color-2: var(--secondary);
-  --color-3: var(--tertiary);
-}
-
-@keyframes color-animation {
-  0%    {color: var(--color-1)}
-  32%   {color: var(--color-1)}
-  33%   {color: var(--color-2)}
-  65%   {color: var(--color-2)}
-  66%   {color: var(--color-3)}
-  99%   {color: var(--color-3)}
-  100%  {color: var(--color-1)}
+  box-shadow: 0 3px 10px -1px rgb(1, 17, 29, 0.5);
 }
 
 .Login input {
@@ -61,12 +47,14 @@ body {
 .Login div button {
   font-family: 'Manrope' , sans-serif;
   font-size: 16px;
+  font-weight: 700;
   height: 50px;
   width: 100%;
   margin-top: 10px;
   border-radius: 50px;
   color: var(--white);
   background-color: var(--secondary);
+  box-shadow: 0 3px 10px -1px rgb(1, 17, 29, 0.5);
 }
 
 .Login button:disabled {
@@ -78,8 +66,13 @@ body {
 }
 
 @media only screen and ( min-width : 864px ) {
+  .logo-text {
+    font-size: 52px;
+  }
+  
   .Login form {
     width: 500px;
+    padding: 0 42px 20px 42px;
   }
 
   .Login input {
