@@ -1,3 +1,7 @@
+body {
+  background: var(--primary);
+}
+
 .Login {
   align-items: center;
   display: flex;
@@ -7,30 +11,36 @@
 
 .Login form {
   align-items: center;
-  border: 1px solid black;
+  border-radius: 50px;
+  height: 250px;
+  width: 280px;
   display: flex;
   flex-direction: column;
-  height: 400px;
-  justify-content: space-evenly;
+  justify-content: center;
   padding-block: 30px;
-  width: 400px;
+  background-color: var(--white);
 }
 
-.Login label {
+/* .Login label {
   display: flex;
   flex-direction: column;
   width: 60%;
-}
+} */
 
 .Login input {
   height: 40px;
-  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 0 5px;
+  border-radius: 50px;
 }
 
 .Login button {
-  height: 40px;
-  width: 60%;
+  height: 50px;
+  width: 70%;
+  margin-top: 10px;
+  border-radius: 50px;
+  color: var(--white);
+  background-color: var(--secondary);
 }
 
 .Login button:enabled {

@@ -53,24 +53,24 @@ class Login extends Component {
       <div className="Login">
         <form onSubmit={ (e) => this.handleSubmit(e) }>
           <label htmlFor="player-name">
-            Nome
             <input
               onChange={ this.handleChange }
               name="name"
               id="player-name"
               data-testid="input-player-name"
               type="text"
+              placeholder="Name"
             />
           </label>
 
           <label htmlFor="gravatar-email">
-            Email
             <input
               onChange={ this.handleChange }
               name="email"
               id="gravatar-email"
               data-testid="input-gravatar-email"
               type="text"
+              placeholder="E-mail"
             />
           </label>
 
