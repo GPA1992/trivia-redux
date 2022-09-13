@@ -13,14 +13,36 @@ body {
   align-items: center;
   border-radius: 50px;
   height: 350px;
-  width: 280px;
+  width: 196px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* padding-block: 30px; */
-  padding-bottom: 40px;
-  padding-top: 10px;
+  padding: 0 42px 40px 42px;
   background-color: var(--white);
+}
+
+.Login form h1 {
+  font-family: 'Manrope' , sans-serif;
+  font-size: 40px;
+  font-weight: 1000;
+  animation: color-animation 4s linear infinite;
+}
+
+.title-trivia-animated {
+  --color-1: var(--primary-no-gradient);
+  --color-2: var(--secondary);
+  --color-3: var(--tertiary);
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
 }
 
 /* .Login label {
@@ -30,19 +52,32 @@ body {
 } */
 
 .Login input {
+  font-family: 'Manrope' , sans-serif;
+  font-size: 16px;
   height: 40px;
+  width: 156px;
   margin-bottom: 10px;
-  padding: 0 5px;
+  padding: 0 20px;
   border-radius: 50px;
 }
 
-.Login button {
+.Login div {
+  width: 100%;
+}
+
+.Login div button {
+  font-family: 'Manrope' , sans-serif;
+  font-size: 16px;
   height: 50px;
-  width: 70%;
+  width: 100%;
   margin-top: 10px;
   border-radius: 50px;
   color: var(--white);
   background-color: var(--secondary);
+}
+
+.Login button:disabled {
+  opacity: 20%;
 }
 
 .Login button:enabled {

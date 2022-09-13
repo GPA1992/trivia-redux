@@ -52,46 +52,41 @@ class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={ (e) => this.handleSubmit(e) }>
-          <h1>TRIVIA</h1>
-          <label htmlFor="player-name">
-            <input
-              onChange={ this.handleChange }
-              name="name"
-              id="player-name"
-              data-testid="input-player-name"
-              type="text"
-              placeholder="Name"
-            />
-          </label>
-
-          <label htmlFor="gravatar-email">
-            <input
-              onChange={ this.handleChange }
-              name="email"
-              id="gravatar-email"
-              data-testid="input-gravatar-email"
-              type="text"
-              placeholder="E-mail"
-            />
-          </label>
-
-          <button
-            data-testid="btn-play"
-            value="play"
-            type="submit"
-            disabled={ isBtnDisabled }
-          >
-            Play
-          </button>
-
-          <button
-            data-testid="btn-settings"
-            value="settings"
-            type="button"
-            onClick={ this.handleClickSettings }
-          >
-            Configurações
-          </button>
+          <h1 className="title-trivia-animated">TRIVIA</h1>
+          <input
+            onChange={ this.handleChange }
+            name="name"
+            id="player-name"
+            data-testid="input-player-name"
+            type="text"
+            placeholder="Name"
+          />
+          <input
+            onChange={ this.handleChange }
+            name="email"
+            id="gravatar-email"
+            data-testid="input-gravatar-email"
+            type="text"
+            placeholder="E-mail"
+          />
+          <div>
+            <button
+              data-testid="btn-play"
+              value="play"
+              type="submit"
+              disabled={ isBtnDisabled }
+            >
+              Play
+            </button>
+            <button
+              data-testid="btn-settings"
+              value="settings"
+              type="button"
+              onClick={ this.handleClickSettings }
+            >
+              Configurações
+            </button>
+          </div>
         </form>
       </div>
     );

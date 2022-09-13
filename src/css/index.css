@@ -12,6 +12,8 @@ body {
 
   --secondary: hsl(239, 59%, 22%);
 
+  --tertiary: rgba(241, 149, 27, 1);
+
   --white: white;
 
   --light: hsl(0, 0%, 95%);
