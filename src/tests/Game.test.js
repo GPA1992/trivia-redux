@@ -78,7 +78,9 @@ describe('Testando a página Game e seus respectivos componentes', () => {
 
   it('verifica se a borda muda para verde quando clicado numa pergunta correta', async () => {
     renderWithRouterAndRedux(<App />, initialState, '/game');
-
+    // setInterval(() => {
+      
+    // }, 1000)
     const allBtns = await screen.findAllByRole('button');
     // * primeira pergunta é verdadeiro ou falso
     expect(allBtns).toHaveLength(2);
