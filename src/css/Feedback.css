@@ -83,4 +83,34 @@
   font-size: 1.3em;
   height: 60px;
   width: 60px;
+  cursor: pointer;
+}
+
+@media only screen and ( min-width : 500px ) {
+  .Feedback .logo-text {
+    font-size: 4em;
+  }
+
+  .Feedback header {
+    width: 30%;
+  }
+
+  .feedback-card {
+    width: 30%;
+    height: 300px;
+  }
+
+  .feedback-button-container {
+    width: 30%;
+  }
+
+  .Feedback button {
+    height: 60px;
+    width: 150px;
+  }
+
+  .Feedback button:hover {
+    background: var(--primary);
+    color: var(--white);
+  }
 }

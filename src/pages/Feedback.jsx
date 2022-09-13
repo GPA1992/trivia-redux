@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faRotateRight,
-  faTrophy,
-} from '@fortawesome/free-solid-svg-icons';
+import { faRotateRight, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/Header';
 import { NextQuestionAction, resetScoreAction } from '../Redux/action';
 import '../css/Feedback.css';
