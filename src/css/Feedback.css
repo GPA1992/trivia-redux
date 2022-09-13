@@ -1,0 +1,86 @@
+.Feedback {
+  align-items: center;
+  background-color: var(--light);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.Feedback header .header-name {
+  color: var(--black);
+}
+
+.Feedback header {
+  margin-bottom: 20px;
+}
+
+.Feedback .Logo {
+  margin-bottom: 60px;
+}
+
+.feedback-card {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px -1px rgb(1, 17, 29, 0.5);
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: center;
+  padding: 10px;
+  width: 80%;
+}
+
+.bad-feedback, .good-feedback {
+  font-size: 1.1em;
+  margin: 0;
+}
+
+.feedback-score-container {
+  font-size: 1.2em;
+  font-weight: 800;
+  margin: 0;
+}
+
+.feedback-score {
+  color: var(--primary-no-gradient);
+  margin: 0 0 0 5px;
+}
+
+.feedback-assertions-container {
+  font-size: 0.9em;
+  margin: 0 0 20px;
+}
+
+.feedback-assertions {
+  margin: 0 5px;
+}
+
+.feedback-button-container {
+  align-items: center;
+  display: flex;
+  height: 35%;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.button-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container p {
+  font-weight: 800;
+  margin: 15px 0 0;
+}
+
+.Feedback button {
+  background-color: var(--white);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
+  font-size: 1.3em;
+  height: 60px;
+  width: 60px;
+}

@@ -1,0 +1,15 @@
+.Logo {
+  align-items: center;
+  background-clip: text;
+  background-image: var(--primary);
+  display: flex;
+  flex-direction: column;
+  font-family: Coiny , cursive;
+  justify-content: center;
+}
+
+.logo-text {
+  color: transparent;
+  font-size: 2em;
+  margin: 0;
+}
