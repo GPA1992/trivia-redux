@@ -26,13 +26,12 @@ body {
   flex-direction: column;
   height: 350px;
   justify-content: center;
-  padding: 30px 42px 40px 42px;
+  padding: 30px 42px 40px;
   width: 196px;
 }
 
 .Login input {
   border-radius: 50px;
-  font-family: 'Manrope' , sans-serif;
   font-size: 16px;
   height: 40px;
   margin-bottom: 10px;
@@ -49,7 +48,6 @@ body {
   border-radius: 50px;
   box-shadow: 0 3px 10px -1px rgb(1, 17, 29, 0.5);
   color: var(--white);
-  font-family: 'Manrope' , sans-serif;
   font-size: 16px;
   font-weight: 700;
   height: 50px;
@@ -66,12 +64,13 @@ body {
 }
 
 @media only screen and ( min-width : 864px ) {
+
   .logo-text {
     font-size: 52px;
   }
-  
+
   .Login form {
-    padding: 0 42px 20px 42px;
+    padding: 0 42px 20px;
     width: 500px;
   }
 
