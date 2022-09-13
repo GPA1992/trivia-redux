@@ -52,6 +52,7 @@ class Login extends Component {
     return (
       <div className="Login">
         <form onSubmit={ (e) => this.handleSubmit(e) }>
+          <h1>TRIVIA</h1>
           <label htmlFor="player-name">
             <input
               onChange={ this.handleChange }

@@ -12,12 +12,14 @@ body {
 .Login form {
   align-items: center;
   border-radius: 50px;
-  height: 250px;
+  height: 350px;
   width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-block: 30px;
+  /* padding-block: 30px; */
+  padding-bottom: 40px;
+  padding-top: 10px;
   background-color: var(--white);
 }
 
