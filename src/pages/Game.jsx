@@ -152,6 +152,12 @@ class Game extends Component {
     nextQuestion();
   };
 
+  decodeEntity = (inputStr) => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = inputStr;
+    return textarea.value;
+  };
+
   render() {
     const { loading, questions, questionIndex, timer, answerBtns } = this.state;
     const NextQuestionBtn = ((questionIndex < LAST_QUESTION_INDEX)
@@ -181,7 +187,7 @@ class Game extends Component {
                     </span>
                   </p>
                   <p className="question-text" data-testid="question-text">
-                    {questions[questionIndex].question}
+                    { this.decodeEntity(questions[questionIndex].question) }
                   </p>
                 </div>
                 <div className="bottom-game">
