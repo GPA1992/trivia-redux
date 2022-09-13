@@ -11,7 +11,7 @@ body {
 
   --primary-no-gradient: hsl(11, 100%, 59%);
 
-  --secondary: rgba(241, 148, 27, 0.74);
+  --secondary: hsl(239, 59%, 22%);
 
   --tertiary: rgba(241, 149, 27, 1);
 
