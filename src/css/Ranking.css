@@ -1,0 +1,101 @@
+.Ranking {
+  align-items: center;
+  background: var(--light);
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Ranking h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 30px 0 50px;
+}
+
+.Ranking button {
+  align-items: center;
+  background: var(--primary);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  font-size: 1em;
+  font-weight: 600;
+  height: 50px;
+  justify-content: space-around;
+  letter-spacing: 1px;
+  margin-bottom: 50px;
+  padding: 5px 35px;
+  width: 190px;
+}
+
+.Ranking img {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.Ranking .position {
+  font-size: 1em;
+  width: 20%;
+}
+
+.Ranking .avatar {
+  width: 20%;
+}
+
+.Ranking .name {
+  font-size: 1em;
+  font-weight: 600;
+  padding-left: 5px;
+  width: 40%;
+}
+
+.Ranking .score {
+  font-size: 0.9em;
+  font-weight: 500;
+  width: 20%;
+}
+
+table, td {
+  border-collapse: collapse;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table {
+  background: var(--primary);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 100px;
+  margin-top: 20px;
+  overflow: auto;
+  table-layout: fixed;
+  width: 90%;
+}
+
+td {
+  font-size: 0.8em;
+  height: 50px;
+  overflow: hidden;
+  padding: 10px 0;
+  width: 100%;
+}
+
+tr {
+  box-shadow: 0 3px 5px -1px rgb(1, 17, 29, 0.5);
+}
+
+tbody tr:nth-of-type( even ) {
+  background-color: var(--light);
+  color: black;
+}
+
+tbody tr:nth-of-type( 1 ) {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
