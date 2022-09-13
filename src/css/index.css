@@ -6,7 +6,7 @@ body {
 }
 
 :root {
-  
+
   --primary: linear-gradient(117deg, rgba(255, 85, 45, 1) 0%, rgba(241, 149, 27, 1) 100%);
 
   --primary-no-gradient: hsl(11, 100%, 59%);
