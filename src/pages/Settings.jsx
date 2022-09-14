@@ -1,12 +1,13 @@
 import React from 'react';
-import Header from '../components/Header';
+import Logo from '../components/Logo';
+import '../css/Settings.css';
 
 class Settings extends React.Component {
   render() {
     return (
-      <main>
-        <Header />
+      <main className="settings">
         <h2 data-testid="settings-title">Settings</h2>
+        <Logo />
       </main>
     );
   }
