@@ -24,7 +24,7 @@ describe(' Testando a Página Login e seus respectivos componentes', () => {
       name: /Play/i,
     });
     const configBtn = screen.getByRole('button', {
-      name: /configurações/i,
+      name: /settings/i,
     });
 
     expect(inputName).toBeInTheDocument();
@@ -58,7 +58,7 @@ describe(' Testando a Página Login e seus respectivos componentes', () => {
   it('Verifica se ao clicar em "configurações", é direcionado à página "/settings" ', () => {
     const { history } = renderWithRouterAndRedux(<App />);
     const ConfigBtn = screen.getByRole('button', {
-      name: /configurações/i,
+      name: /settings/i,
     });
     userEvent.click(ConfigBtn);
 
