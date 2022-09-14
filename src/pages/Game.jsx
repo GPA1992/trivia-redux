@@ -59,11 +59,7 @@ class Game extends Component {
 
   setDifficulty = () => {
     const { questions, questionIndex } = this.state;
-    const difficultyList = {
-      easy: 1,
-      medium: 2,
-      hard: 3,
-    };
+    const difficultyList = { easy: 1, medium: 2, hard: 3 };
     return difficultyList[questions[questionIndex].difficulty];
   };
 
@@ -77,11 +73,7 @@ class Game extends Component {
       setUserPerformance(upScore);
     }
     this.setState(() => ({
-      timer: 0,
-      answerBtns: {
-        myAnswer: true,
-        isDisabled: true,
-      },
+      timer: 0, answerBtns: { myAnswer: true, isDisabled: true },
     }));
   };
 
@@ -140,10 +132,7 @@ class Game extends Component {
   onTimerFinished = () => {
     this.setState({
       timer: 0,
-      answerBtns: {
-        myAnswer: true,
-        isDisabled: true,
-      },
+      answerBtns: { myAnswer: true, isDisabled: true },
     }, () => this.updateGlobalAnswer());
   };
 
