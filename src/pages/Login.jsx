@@ -54,38 +54,40 @@ class Login extends Component {
       <div className="Login">
         <form onSubmit={ (e) => this.handleSubmit(e) }>
           <Logo />
-          <input
-            onChange={ this.handleChange }
-            name="name"
-            id="player-name"
-            data-testid="input-player-name"
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            onChange={ this.handleChange }
-            name="email"
-            id="gravatar-email"
-            data-testid="input-gravatar-email"
-            type="text"
-            placeholder="E-mail"
-          />
-          <div>
+          <div className="input-container">
+            <input
+              data-testid="input-player-name"
+              id="player-name"
+              name="name"
+              onChange={ this.handleChange }
+              placeholder="Name"
+              type="text"
+            />
+            <input
+              data-testid="input-gravatar-email"
+              id="gravatar-email"
+              name="email"
+              onChange={ this.handleChange }
+              placeholder="E-mail"
+              type="text"
+            />
+          </div>
+          <div className="btn-container">
             <button
               data-testid="btn-play"
-              value="play"
-              type="submit"
               disabled={ isBtnDisabled }
+              type="submit"
+              value="play"
             >
               Play
             </button>
             <button
               data-testid="btn-settings"
-              value="settings"
-              type="button"
               onClick={ this.handleClickSettings }
+              type="button"
+              value="settings"
             >
-              Configurações
+              Settings
             </button>
           </div>
         </form>
@@ -99,7 +101,6 @@ Login.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   setUser: PropTypes.func.isRequired,
-
 };
 
 const mapDispatchToProps = (dispatch) => ({
