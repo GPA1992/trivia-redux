@@ -198,15 +198,17 @@ class Game extends Component {
                   <div className="answers-container" data-testid="answer-options">
                     {this.sortButtons()}
                   </div>
-                  {answerBtns.isDisabled && (
-                    <button
-                      className="next-button"
-                      type="button"
-                      data-testid="btn-next"
-                      onClick={ this.changeQuestion }
-                    >
-                      {NextQuestionBtn}
-                    </button>)}
+                  <div className="next-button-container">
+                    {answerBtns.isDisabled && (
+                      <button
+                        className="next-button"
+                        type="button"
+                        data-testid="btn-next"
+                        onClick={ this.changeQuestion }
+                      >
+                        {NextQuestionBtn}
+                      </button>)}
+                  </div>
                 </div>
               </div>
             )

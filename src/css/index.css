@@ -5,6 +5,11 @@ body {
   font-family: Manrope , sans-serif;
 }
 
+button:enabled:hover {
+  transform: scale(1.01);
+  transition: 200ms ease-in;
+}
+
 :root {
 
   --primary: linear-gradient(117deg, rgba(255, 85, 45, 1) 0%, rgba(241, 149, 27, 1) 100%);
