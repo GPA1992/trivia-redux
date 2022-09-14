@@ -15,6 +15,7 @@
 }
 
 @media only screen and ( min-width : 864px ) {
+
   .settings {
     align-items: flex-start;
     flex-direction: row;
