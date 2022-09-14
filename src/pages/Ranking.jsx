@@ -16,7 +16,7 @@ class Ranking extends Component {
     const rankSaved = JSON.parse(localStorage.getItem('ranking'));
     const currentPlayer = { name, score, picture };
     if (!rankSaved) {
-      localStorage.setItem('ranking', JSON.stringify([currentPlayer]));
+      localStorage.setItem('ranking', JSON.stringify([]));
     } else {
       localStorage.setItem('ranking', JSON.stringify([...rankSaved, currentPlayer]));
     }

@@ -23,9 +23,10 @@ const ONE_SECOND_COUNTER = 1000;
 class Game extends Component {
   state = {
     ...INITIAL_STATE,
-    questions: {},
+    questions: [],
     questionIndex: 0,
     loading: true,
+    randomAnswers: [],
   };
 
   async componentDidMount() {
@@ -37,7 +38,17 @@ class Game extends Component {
       localStorage.removeItem('token');
       history.push('/');
     } else {
-      this.setState({ questions, loading: false });
+      this.setState({ questions, loading: false }, () => {
+        this.setState({ randomAnswers: this.shuffleArray(this.createArrayOfAnswers()) });
+      });
+    }
+  }
+
+  componentDidUpdate(_, { questionIndex: prevQuestionIndex }) {
+    const { questionIndex } = this.state;
+
+    if (prevQuestionIndex !== questionIndex) {
+      this.setState({ randomAnswers: this.shuffleArray(this.createArrayOfAnswers()) });
     }
   }
 
@@ -90,7 +101,7 @@ class Game extends Component {
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || responseFromGlobalState }
       >
-        {answer}
+        {this.decodeEntity(answer)}
       </button>
     ));
   };
@@ -111,14 +122,19 @@ class Game extends Component {
         onClick={ this.clickAnswerHandler }
         disabled={ isDisabled || responseFromGlobalState }
       >
-        {correctAnswer}
+        {this.decodeEntity(correctAnswer)}
       </button>
     );
   };
 
-  createArrayOfAnswers = () => {
-    const arrayOfAnswers = [...this.getIncorrectAnswers(), this.getCorrectAnswer()];
-    return this.shuffleArray(arrayOfAnswers);
+  createArrayOfAnswers = () => [...this.getIncorrectAnswers(), this.getCorrectAnswer()];
+
+  sortButtons = () => {
+    const { randomAnswers } = this.state;
+    return this.createArrayOfAnswers().sort(({ key: keyA }, { key: keyB }) => (
+      randomAnswers.findIndex((answer) => keyA === answer.key)
+      - randomAnswers.findIndex((answer) => keyB === answer.key)
+    ));
   };
 
   onTimerFinished = () => {
@@ -165,8 +181,7 @@ class Game extends Component {
     return (
       <div className="Game">
         {
-          loading
-            ? <Loading />
+          loading ? <Loading />
             : (
               <div className="game-container">
                 <Header />
@@ -192,7 +207,7 @@ class Game extends Component {
                 </div>
                 <div className="bottom-game">
                   <div className="answers-container" data-testid="answer-options">
-                    {this.createArrayOfAnswers()}
+                    {this.sortButtons()}
                   </div>
                   {answerBtns.isDisabled && (
                     <button
