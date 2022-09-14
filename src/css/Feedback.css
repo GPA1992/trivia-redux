@@ -89,11 +89,16 @@
 @media only screen and ( min-width : 864px ) {
 
   .Feedback .logo-text {
-    font-size: 4em;
+    font-size: 3.5em;
   }
 
   .Feedback header {
+    margin-bottom: 0;
     width: 30%;
+  }
+
+  .Feedback .Logo {
+    margin-bottom: 3%;
   }
 
   .feedback-card {

@@ -97,16 +97,25 @@
   border: 3px solid red;
 }
 
+.next-button-container {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 40%;
+}
+
 .next-button {
   background: var(--primary);
   border: none;
   border-radius: 20px;
+  box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
   color: var(--white);
   cursor: pointer;
   font-weight: 500;
   letter-spacing: 1px;
   margin-top: 10px;
-  padding: 0 50px;
+  width: 100%;
 }
 
 @media only screen and ( min-width : 864px ) {
@@ -149,16 +158,26 @@
     display: flex;
     font-size: 1.1em;
     font-weight: 600;
-    height: 80px;
+    height: 70px;
     justify-content: center;
     margin-bottom: 40px;
     padding: 20px;
-    width: 44%;
+    width: 40%;
+  }
+
+  .next-button-container {
+    height: 50px;
+    padding-bottom: 20px;
+    width: 50%;
   }
 
   .next-button {
+    align-items: center;
+    display: flex;
     font-size: 1em;
     font-weight: 600;
+    height: 50px;
+    justify-content: center;
     width: 30%;
   }
 }
