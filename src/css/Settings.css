@@ -1,0 +1,38 @@
+.settings {
+  align-items: center;
+  background: var(--light);
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.settings h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 30px;
+}
+
+@media only screen and ( min-width : 864px ) {
+  .settings {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .settings h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 10%;
+  }
+
+  .settings .Logo {
+    margin: 5% 10%;
+  }
+
+  .settings .logo-text {
+    font-size: 4em;
+  }
+}

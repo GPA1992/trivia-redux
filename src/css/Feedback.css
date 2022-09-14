@@ -77,8 +77,8 @@
 
 .Feedback button {
   background-color: var(--white);
-  border: none;
   border-radius: 10px;
+  border: none;
   box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
   cursor: pointer;
   font-size: 1.3em;
@@ -86,7 +86,7 @@
   width: 60px;
 }
 
-@media only screen and ( min-width : 500px ) {
+@media only screen and ( min-width : 864px ) {
 
   .Feedback .logo-text {
     font-size: 4em;
