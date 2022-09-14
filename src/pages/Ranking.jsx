@@ -9,7 +9,7 @@ import '../css/Ranking.css';
 // const HASH = 'f00cb469ce38726ee00a7c6836761b0a4fb808181a125dcde6d50a9f3c9127b6';
 // const PLACEHOLDER_PLAYER = {
 //   name: 'Jonh Doe',
-//   score: 100,
+//   score: 120,
 //   picture: `https://www.gravatar.com/avatar/${HASH}`,
 // };
 
