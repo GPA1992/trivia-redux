@@ -18,7 +18,7 @@ class Login extends Component {
     const errors = [
       !email.length,
       !name.length,
-      !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email),
+      !/^[\w.]+@[\w.]+.[a-z]{2,3}(.[a-z]{2})?$/i.test(email),
     ];
     const checkErrors = errors.every((error) => error === false);
     this.setState({ isBtnDisabled: !checkErrors });
