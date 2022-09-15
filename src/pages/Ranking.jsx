@@ -9,7 +9,8 @@ import '../css/Ranking.css';
 // const HASH = 'f00cb469ce38726ee00a7c6836761b0a4fb808181a125dcde6d50a9f3c9127b6';
 // const PLACEHOLDER_PLAYER = {
 //   name: 'Jonh Doe',
-//   score: 120,
+//   score: 200,
+//
 //   picture: `https://www.gravatar.com/avatar/${HASH}`,
 // };
 
@@ -23,7 +24,8 @@ class Ranking extends Component {
     const rankSaved = JSON.parse(localStorage.getItem('ranking'));
     const currentPlayer = { name, score, picture };
     if (!rankSaved) {
-      localStorage.setItem('ranking', JSON.stringify([currentPlayer]));
+      localStorage
+        .setItem('ranking', JSON.stringify([currentPlayer]));
     } else {
       localStorage.setItem('ranking', JSON.stringify([...rankSaved, currentPlayer]));
     }
