@@ -22,6 +22,8 @@ button:enabled:hover {
 
   --white: white;
 
+  --erase: rgb(255, 74, 74);
+
   --light: hsl(0, 0%, 95%);
 
   --black: rgb(24, 23, 23);
