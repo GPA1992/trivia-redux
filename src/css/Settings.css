@@ -29,6 +29,34 @@
   top: 40%;
 }
 
+.developers {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.developers h2 {
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.developers a {
+  align-items: center;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+.developers .icon {
+  color: #0a66c2;
+  margin: 0 10px;
+}
+
 .clear-ranking-button {
   align-items: center;
   background: var(--primary);
@@ -43,6 +71,7 @@
   height: 50px;
   justify-content: space-around;
   letter-spacing: 1px;
+  margin-bottom: 30%;
   padding: 0 25px;
   width: 200px;
 }
