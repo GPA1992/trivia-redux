@@ -1,39 +1,81 @@
-.settings {
+.Settings {
   align-items: center;
   background: var(--light);
   color: var(--black);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
-.settings h2 {
+.settings-header {
+  align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin-bottom: 10%;
+  position: relative;
+  width: 90%;
+}
+
+.back-button {
+  background-color: var(--light);
+  border: none;
+  color: var(--black);
+  cursor: pointer;
+  font-size: 1.3em;
+  left: 0;
+  position: absolute;
+  top: 40%;
+}
+
+.clear-ranking-button {
+  align-items: center;
+  background: var(--primary);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px -3px rgb(1, 17, 29, 0.5);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  font-size: 1em;
+  font-weight: 600;
+  height: 50px;
+  justify-content: space-around;
+  letter-spacing: 1px;
+  padding: 0 25px;
+  width: 200px;
+}
+
+.clear-ranking-button:hover {
+  background: var(--erase);
+}
+
+.Settings h1 {
   font-size: 1.5em;
   font-weight: 600;
   letter-spacing: 2px;
-  margin: 30px;
 }
 
 @media only screen and ( min-width : 864px ) {
 
-  .settings {
-    align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-between;
+  .settings-header {
+    margin-bottom: 5%;
+    width: 70%;
   }
 
-  .settings h2 {
+  .Settings h1 {
     font-size: 1.5em;
     font-weight: 600;
     letter-spacing: 2px;
     margin: 10%;
   }
 
-  .settings .Logo {
+  .Settings .Logo {
     margin: 5% 10%;
   }
 
-  .settings .logo-text {
+  .Settings .logo-text {
     font-size: 4em;
   }
 }

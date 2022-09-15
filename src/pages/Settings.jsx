@@ -1,31 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from '../components/Logo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import '../css/Settings.css';
 
 class Settings extends React.Component {
   render() {
     const { history } = this.props;
     return (
-      <main className="settings">
-        <h2 data-testid="settings-title">Settings</h2>
-        <Logo />
-        <section>
+      <main className="Settings">
+        <div className="settings-header">
           <button
-            type="button"
-            onClick={ () => localStorage.clear() }
-            data-testid="clear-Ranking"
-
-          >
-            Clear Ranking
-          </button>
-          <button
+            className="back-button"
             type="button"
             onClick={ () => history.push('/') }
             data-testid="btn-go-home2"
           >
-            Back
+            <FontAwesomeIcon icon={ faArrowLeft } />
           </button>
+          <h1 data-testid="settings-title">Settings</h1>
+        </div>
+        <section>
+          <button
+            className="clear-ranking-button"
+            type="button"
+            onClick={ () => localStorage.clear() }
+            data-testid="clear-Ranking"
+          >
+            <FontAwesomeIcon icon={ faTrashCan } />
+            Clear Ranking
+          </button>
+
         </section>
       </main>
     );
