@@ -10,6 +10,7 @@ import '../css/Ranking.css';
 // const PLACEHOLDER_PLAYER = {
 //   name: 'Jonh Doe',
 //   score: 200,
+//
 //   picture: `https://www.gravatar.com/avatar/${HASH}`,
 // };
 
